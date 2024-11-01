@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Info App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        input {
+            font-size: 16px;
+            padding: 5px;
+            width: 250px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Copy Info App</h1>
+
+    <div class="container">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" value="7280788" readonly>
+        <button onclick="copyText('phone')">Copy Phone Number</button>
+    </div>
+
+    <div class="container">
+        <label for="account">Account Number:</label>
+        <input type="text" id="account" value="7730000034125" readonly>
+        <button onclick="copyText('account')">Copy Account Number</button>
+    </div>
+
+    <script>
+        function copyText(elementId) {
+            const text = document.getElementById(elementId);
+            text.select();
+            text.setSelectionRange(0, 99999); // For mobile devices
+            navigator.clipboard.writeText(text.value)
+                .then(() => alert("Copied: " + text.value))
+                .catch(err => console.error("Failed to copy text: ", err));
+        }
+    </script>
+</body>
+</html>
